@@ -1,8 +1,25 @@
-[gd_scene load_steps=4 format=3 uid="uid://b1wskcnwrxs25"]
+[gd_scene load_steps=5 format=3 uid="uid://b1wskcnwrxs25"]
 
 [ext_resource type="Script" path="res://src/scenes/menu/scripts/main.gd" id="1_hc677"]
 [ext_resource type="Script" path="res://src/scenes/menu/scripts/HostMenu.gd" id="2_f2qv4"]
 [ext_resource type="Script" path="res://src/scenes/menu/scripts/ConnectMenu.gd" id="3_cpjdu"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_se2so"]
+properties/0/path = NodePath("ItemList:item_0/text")
+properties/0/spawn = true
+properties/0/sync = true
+properties/1/path = NodePath("ItemList:item_0/disabled")
+properties/1/spawn = true
+properties/1/sync = true
+properties/2/path = NodePath("ItemList:item_count")
+properties/2/spawn = true
+properties/2/sync = true
+properties/3/path = NodePath("ItemList:item_1/text")
+properties/3/spawn = true
+properties/3/sync = true
+properties/4/path = NodePath("ItemList:item_2/text")
+properties/4/spawn = true
+properties/4/sync = true
 
 [node name="root" type="Control"]
 layout_mode = 3
@@ -57,7 +74,6 @@ size_flags_vertical = 4
 text = "EXIT"
 
 [node name="HostMenu" type="Node2D" parent="HBoxContainer"]
-visible = false
 script = ExtResource("2_f2qv4")
 
 [node name="StartHostingButton" type="Button" parent="HBoxContainer/HostMenu"]
@@ -70,8 +86,12 @@ text = "START HOSTING"
 [node name="ItemList" type="ItemList" parent="HBoxContainer/HostMenu"]
 offset_left = 310.0
 offset_top = -259.0
-offset_right = 563.0
+offset_right = 536.0
 offset_bottom = 313.0
+item_count = 3
+item_0/text = ""
+item_1/text = ""
+item_2/text = ""
 
 [node name="BackToMainMenuFromHostButton" type="Button" parent="HBoxContainer/HostMenu"]
 offset_left = -502.0
@@ -80,26 +100,11 @@ offset_right = -446.0
 offset_bottom = 319.0
 text = "Back"
 
-[node name="Player1Name" type="Label" parent="HBoxContainer/HostMenu"]
-offset_left = 361.0
-offset_top = -237.0
-offset_right = 494.0
-offset_bottom = -200.0
-text = "Player"
-
-[node name="Player2Name" type="Label" parent="HBoxContainer/HostMenu"]
-offset_left = 362.0
-offset_top = -183.0
-offset_right = 495.0
-offset_bottom = -146.0
-
-[node name="Player3Name" type="Label" parent="HBoxContainer/HostMenu"]
-offset_left = 362.0
-offset_top = -123.0
-offset_right = 495.0
-offset_bottom = -86.0
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="HBoxContainer/HostMenu"]
+replication_config = SubResource("SceneReplicationConfig_se2so")
 
 [node name="ConnectMenu" type="Node2D" parent="HBoxContainer"]
+visible = false
 script = ExtResource("3_cpjdu")
 
 [node name="BackToMainMenuFromConnectButton" type="Button" parent="HBoxContainer/ConnectMenu"]
@@ -145,9 +150,6 @@ offset_right = 119.0
 offset_bottom = 41.0
 text = "Port:"
 
-[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="HBoxContainer"]
-spawn_path = NodePath("../..")
-
 [connection signal="pressed" from="HBoxContainer/MainMenu/VBoxContainer/HostButton" to="." method="_on_host_button_pressed"]
 [connection signal="pressed" from="HBoxContainer/MainMenu/VBoxContainer/ConnectButton" to="." method="_on_connect_button_pressed"]
 [connection signal="pressed" from="HBoxContainer/MainMenu/VBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]
@@ -155,4 +157,5 @@ spawn_path = NodePath("../..")
 [connection signal="pressed" from="HBoxContainer/HostMenu/StartHostingButton" to="HBoxContainer/HostMenu" method="_on_start_hosting_button_pressed"]
 [connection signal="pressed" from="HBoxContainer/HostMenu/BackToMainMenuFromHostButton" to="." method="_on_back_to_main_menu_button_pressed"]
 [connection signal="pressed" from="HBoxContainer/ConnectMenu/BackToMainMenuFromConnectButton" to="." method="_on_back_to_main_menu_from_connect_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/ConnectMenu/ConnectGameButton" to="." method="_on_connect_game_button_pressed"]
 [connection signal="pressed" from="HBoxContainer/ConnectMenu/ConnectGameButton" to="HBoxContainer/ConnectMenu" method="_on_connect_game_button_pressed"]
