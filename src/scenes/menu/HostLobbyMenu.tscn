@@ -1,0 +1,49 @@
+[gd_scene format=3 uid="uid://bio7tfyrnn4r6"]
+
+[node name="HostLobbyMenu" type="Node2D"]
+position = Vector2(557, 303)
+
+[node name="StartGameButton" type="Button" parent="."]
+offset_left = -5.0
+offset_top = 286.0
+offset_right = 51.0
+offset_bottom = 317.0
+text = "START"
+metadata/_edit_use_anchors_ = true
+
+[node name="ItemList" type="ItemList" parent="."]
+offset_left = 310.0
+offset_top = -259.0
+offset_right = 563.0
+offset_bottom = 313.0
+metadata/_edit_use_anchors_ = true
+
+[node name="BackToMainMenuFromHostButton" type="Button" parent="."]
+offset_left = -502.0
+offset_top = 288.0
+offset_right = -446.0
+offset_bottom = 319.0
+text = "Back"
+metadata/_edit_use_anchors_ = true
+
+[node name="Player1Name" type="TextEdit" parent="."]
+offset_left = 361.0
+offset_top = -237.0
+offset_right = 494.0
+offset_bottom = -200.0
+text = "Player"
+metadata/_edit_use_anchors_ = true
+
+[node name="Player2Name" type="TextEdit" parent="."]
+offset_left = 362.0
+offset_top = -183.0
+offset_right = 495.0
+offset_bottom = -146.0
+metadata/_edit_use_anchors_ = true
+
+[node name="Player3Name" type="TextEdit" parent="."]
+offset_left = 362.0
+offset_top = -123.0
+offset_right = 495.0
+offset_bottom = -86.0
+metadata/_edit_use_anchors_ = true
