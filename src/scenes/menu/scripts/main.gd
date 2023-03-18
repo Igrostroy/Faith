@@ -55,3 +55,9 @@ func _on_host_button_pressed():
 
 func _on_back_to_main_menu_from_connect_button_pressed():
 	open_connect_menu.undo()
+
+
+func _on_connect_game_button_pressed():
+	open_connect_menu.undo()
+	open_host_menu.execute()
+	
