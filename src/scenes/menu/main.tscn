@@ -1,0 +1,158 @@
+[gd_scene load_steps=4 format=3 uid="uid://b1wskcnwrxs25"]
+
+[ext_resource type="Script" path="res://src/scenes/menu/scripts/main.gd" id="1_hc677"]
+[ext_resource type="Script" path="res://src/scenes/menu/scripts/HostMenu.gd" id="2_f2qv4"]
+[ext_resource type="Script" path="res://src/scenes/menu/scripts/ConnectMenu.gd" id="3_cpjdu"]
+
+[node name="root" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = -5.0
+offset_right = 8.0
+offset_bottom = -5.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_hc677")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -28.0
+offset_top = -33.0
+offset_right = 28.0
+offset_bottom = 33.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="MainMenu" type="Node2D" parent="HBoxContainer"]
+visible = false
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/MainMenu"]
+offset_right = 56.0
+offset_bottom = 66.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+alignment = 1
+
+[node name="HostButton" type="Button" parent="HBoxContainer/MainMenu/VBoxContainer"]
+layout_mode = 2
+text = "HOST"
+
+[node name="ConnectButton" type="Button" parent="HBoxContainer/MainMenu/VBoxContainer"]
+layout_mode = 2
+text = "CONNECT"
+
+[node name="ExitButton" type="Button" parent="HBoxContainer/MainMenu/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "EXIT"
+
+[node name="HostMenu" type="Node2D" parent="HBoxContainer"]
+visible = false
+script = ExtResource("2_f2qv4")
+
+[node name="StartHostingButton" type="Button" parent="HBoxContainer/HostMenu"]
+offset_left = -5.0
+offset_top = 286.0
+offset_right = 51.0
+offset_bottom = 317.0
+text = "START HOSTING"
+
+[node name="ItemList" type="ItemList" parent="HBoxContainer/HostMenu"]
+offset_left = 310.0
+offset_top = -259.0
+offset_right = 563.0
+offset_bottom = 313.0
+
+[node name="BackToMainMenuFromHostButton" type="Button" parent="HBoxContainer/HostMenu"]
+offset_left = -502.0
+offset_top = 288.0
+offset_right = -446.0
+offset_bottom = 319.0
+text = "Back"
+
+[node name="Player1Name" type="Label" parent="HBoxContainer/HostMenu"]
+offset_left = 361.0
+offset_top = -237.0
+offset_right = 494.0
+offset_bottom = -200.0
+text = "Player"
+
+[node name="Player2Name" type="Label" parent="HBoxContainer/HostMenu"]
+offset_left = 362.0
+offset_top = -183.0
+offset_right = 495.0
+offset_bottom = -146.0
+
+[node name="Player3Name" type="Label" parent="HBoxContainer/HostMenu"]
+offset_left = 362.0
+offset_top = -123.0
+offset_right = 495.0
+offset_bottom = -86.0
+
+[node name="ConnectMenu" type="Node2D" parent="HBoxContainer"]
+script = ExtResource("3_cpjdu")
+
+[node name="BackToMainMenuFromConnectButton" type="Button" parent="HBoxContainer/ConnectMenu"]
+offset_left = -502.0
+offset_top = 288.0
+offset_right = -446.0
+offset_bottom = 319.0
+text = "Back"
+
+[node name="ServerIPLabel" type="Label" parent="HBoxContainer/ConnectMenu"]
+offset_left = -94.0
+offset_top = 20.0
+offset_right = -22.0
+offset_bottom = 46.0
+text = "ServerIP:"
+
+[node name="ConnectGameButton" type="Button" parent="HBoxContainer/ConnectMenu"]
+offset_left = -57.0
+offset_top = 103.0
+offset_right = 117.0
+offset_bottom = 134.0
+text = "CONNECT"
+
+[node name="ServerIPEdit" type="TextEdit" parent="HBoxContainer/ConnectMenu"]
+offset_left = -142.0
+offset_top = 49.0
+offset_right = 30.0
+offset_bottom = 84.0
+text = "localhost"
+
+[node name="ServerPortEdit" type="TextEdit" parent="HBoxContainer/ConnectMenu"]
+offset_left = 43.0
+offset_top = 48.0
+offset_right = 180.0
+offset_bottom = 84.0
+text = "4433"
+placeholder_text = "PORT"
+
+[node name="ServerPortLabel" type="Label" parent="HBoxContainer/ConnectMenu"]
+offset_left = 47.0
+offset_top = 15.0
+offset_right = 119.0
+offset_bottom = 41.0
+text = "Port:"
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="HBoxContainer"]
+spawn_path = NodePath("../..")
+
+[connection signal="pressed" from="HBoxContainer/MainMenu/VBoxContainer/HostButton" to="." method="_on_host_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/MainMenu/VBoxContainer/ConnectButton" to="." method="_on_connect_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/MainMenu/VBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]
+[connection signal="visibility_changed" from="HBoxContainer/HostMenu" to="HBoxContainer/HostMenu" method="_on_visibility_changed"]
+[connection signal="pressed" from="HBoxContainer/HostMenu/StartHostingButton" to="HBoxContainer/HostMenu" method="_on_start_hosting_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/HostMenu/BackToMainMenuFromHostButton" to="." method="_on_back_to_main_menu_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/ConnectMenu/BackToMainMenuFromConnectButton" to="." method="_on_back_to_main_menu_from_connect_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/ConnectMenu/ConnectGameButton" to="HBoxContainer/ConnectMenu" method="_on_connect_game_button_pressed"]
