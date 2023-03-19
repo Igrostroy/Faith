@@ -34,7 +34,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_hc677")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="Level" type="HBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -49,41 +49,53 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
-[node name="MainMenu" type="Node2D" parent="HBoxContainer"]
-visible = false
+[node name="MainMenu" type="Node2D" parent="Level"]
 
-[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/MainMenu"]
-offset_right = 56.0
-offset_bottom = 66.0
+[node name="VBoxContainer" type="VBoxContainer" parent="Level/MainMenu"]
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -42.0
+offset_right = 42.0
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 alignment = 1
 
-[node name="HostButton" type="Button" parent="HBoxContainer/MainMenu/VBoxContainer"]
+[node name="HostButton" type="Button" parent="Level/MainMenu/VBoxContainer"]
 layout_mode = 2
 text = "HOST"
 
-[node name="ConnectButton" type="Button" parent="HBoxContainer/MainMenu/VBoxContainer"]
+[node name="ConnectButton" type="Button" parent="Level/MainMenu/VBoxContainer"]
 layout_mode = 2
 text = "CONNECT"
 
-[node name="ExitButton" type="Button" parent="HBoxContainer/MainMenu/VBoxContainer"]
+[node name="ExitButton" type="Button" parent="Level/MainMenu/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 text = "EXIT"
 
-[node name="HostMenu" type="Node2D" parent="HBoxContainer"]
+[node name="HostMenu" type="Node2D" parent="Level"]
 script = ExtResource("2_f2qv4")
 
-[node name="StartHostingButton" type="Button" parent="HBoxContainer/HostMenu"]
+[node name="StartHostingButton" type="Button" parent="Level/HostMenu"]
 offset_left = -5.0
 offset_top = 286.0
 offset_right = 51.0
 offset_bottom = 317.0
 text = "START HOSTING"
 
-[node name="ItemList" type="ItemList" parent="HBoxContainer/HostMenu"]
+[node name="StartGame" type="Button" parent="Level/HostMenu"]
+offset_left = -224.0
+offset_top = 287.0
+offset_right = -92.0
+offset_bottom = 318.0
+text = "START GAME"
+
+[node name="ItemList" type="ItemList" parent="Level/HostMenu"]
 offset_left = 310.0
 offset_top = -259.0
 offset_right = 536.0
@@ -93,49 +105,64 @@ item_0/text = ""
 item_1/text = ""
 item_2/text = ""
 
-[node name="BackToMainMenuFromHostButton" type="Button" parent="HBoxContainer/HostMenu"]
+[node name="BackToMainMenuFromHostButton" type="Button" parent="Level/HostMenu"]
 offset_left = -502.0
 offset_top = 288.0
 offset_right = -446.0
 offset_bottom = 319.0
 text = "Back"
 
-[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="HBoxContainer/HostMenu"]
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="Level/HostMenu"]
 replication_config = SubResource("SceneReplicationConfig_se2so")
 
-[node name="ConnectMenu" type="Node2D" parent="HBoxContainer"]
+[node name="PortEdit" type="TextEdit" parent="Level/HostMenu"]
+offset_left = -217.0
+offset_top = 204.0
+offset_right = -32.0
+offset_bottom = 250.0
+text = "4433"
+placeholder_text = "PORT"
+
+[node name="PortLabel" type="Label" parent="Level/HostMenu"]
+offset_left = -261.0
+offset_top = 213.0
+offset_right = -221.0
+offset_bottom = 239.0
+text = "Port:"
+
+[node name="ConnectMenu" type="Node2D" parent="Level"]
 visible = false
 script = ExtResource("3_cpjdu")
 
-[node name="BackToMainMenuFromConnectButton" type="Button" parent="HBoxContainer/ConnectMenu"]
+[node name="BackToMainMenuFromConnectButton" type="Button" parent="Level/ConnectMenu"]
 offset_left = -502.0
 offset_top = 288.0
 offset_right = -446.0
 offset_bottom = 319.0
 text = "Back"
 
-[node name="ServerIPLabel" type="Label" parent="HBoxContainer/ConnectMenu"]
+[node name="ServerIPLabel" type="Label" parent="Level/ConnectMenu"]
 offset_left = -94.0
 offset_top = 20.0
 offset_right = -22.0
 offset_bottom = 46.0
 text = "ServerIP:"
 
-[node name="ConnectGameButton" type="Button" parent="HBoxContainer/ConnectMenu"]
+[node name="ConnectGameButton" type="Button" parent="Level/ConnectMenu"]
 offset_left = -57.0
 offset_top = 103.0
 offset_right = 117.0
 offset_bottom = 134.0
 text = "CONNECT"
 
-[node name="ServerIPEdit" type="TextEdit" parent="HBoxContainer/ConnectMenu"]
+[node name="ServerIPEdit" type="TextEdit" parent="Level/ConnectMenu"]
 offset_left = -142.0
 offset_top = 49.0
 offset_right = 30.0
 offset_bottom = 84.0
 text = "localhost"
 
-[node name="ServerPortEdit" type="TextEdit" parent="HBoxContainer/ConnectMenu"]
+[node name="ServerPortEdit" type="TextEdit" parent="Level/ConnectMenu"]
 offset_left = 43.0
 offset_top = 48.0
 offset_right = 180.0
@@ -143,19 +170,30 @@ offset_bottom = 84.0
 text = "4433"
 placeholder_text = "PORT"
 
-[node name="ServerPortLabel" type="Label" parent="HBoxContainer/ConnectMenu"]
+[node name="ServerPortLabel" type="Label" parent="Level/ConnectMenu"]
 offset_left = 47.0
 offset_top = 15.0
 offset_right = 119.0
 offset_bottom = 41.0
 text = "Port:"
 
-[connection signal="pressed" from="HBoxContainer/MainMenu/VBoxContainer/HostButton" to="." method="_on_host_button_pressed"]
-[connection signal="pressed" from="HBoxContainer/MainMenu/VBoxContainer/ConnectButton" to="." method="_on_connect_button_pressed"]
-[connection signal="pressed" from="HBoxContainer/MainMenu/VBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]
-[connection signal="visibility_changed" from="HBoxContainer/HostMenu" to="HBoxContainer/HostMenu" method="_on_visibility_changed"]
-[connection signal="pressed" from="HBoxContainer/HostMenu/StartHostingButton" to="HBoxContainer/HostMenu" method="_on_start_hosting_button_pressed"]
-[connection signal="pressed" from="HBoxContainer/HostMenu/BackToMainMenuFromHostButton" to="." method="_on_back_to_main_menu_button_pressed"]
-[connection signal="pressed" from="HBoxContainer/ConnectMenu/BackToMainMenuFromConnectButton" to="." method="_on_back_to_main_menu_from_connect_button_pressed"]
-[connection signal="pressed" from="HBoxContainer/ConnectMenu/ConnectGameButton" to="." method="_on_connect_game_button_pressed"]
-[connection signal="pressed" from="HBoxContainer/ConnectMenu/ConnectGameButton" to="HBoxContainer/ConnectMenu" method="_on_connect_game_button_pressed"]
+[node name="ConnectionStatus" type="Label" parent="Level/ConnectMenu"]
+offset_left = -78.0
+offset_top = -124.0
+offset_right = 120.0
+offset_bottom = -83.0
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("res://src/scenes/level/BattleLevel.tscn")
+spawn_path = NodePath("../Level")
+spawn_limit = 1
+
+[connection signal="pressed" from="Level/MainMenu/VBoxContainer/HostButton" to="." method="_on_host_button_pressed"]
+[connection signal="pressed" from="Level/MainMenu/VBoxContainer/ConnectButton" to="." method="_on_connect_button_pressed"]
+[connection signal="pressed" from="Level/MainMenu/VBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]
+[connection signal="visibility_changed" from="Level/HostMenu" to="Level/HostMenu" method="_on_visibility_changed"]
+[connection signal="pressed" from="Level/HostMenu/StartHostingButton" to="Level/HostMenu" method="_on_start_hosting_button_pressed"]
+[connection signal="pressed" from="Level/HostMenu/StartGame" to="." method="_on_start_game_pressed"]
+[connection signal="pressed" from="Level/HostMenu/BackToMainMenuFromHostButton" to="." method="_on_back_to_main_menu_button_pressed"]
+[connection signal="pressed" from="Level/ConnectMenu/BackToMainMenuFromConnectButton" to="." method="_on_back_to_main_menu_from_connect_button_pressed"]
+[connection signal="pressed" from="Level/ConnectMenu/ConnectGameButton" to="Level/ConnectMenu" method="_on_connect_game_button_pressed"]

@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://ciridmbcahx5j"]
+
+[ext_resource type="Texture2D" uid="uid://l6bgsrrmlxmn" path="res://src/assets/castles/3.jpg" id="2_p0ia1"]
+[ext_resource type="PackedScene" uid="uid://c1pcnoyt8ewoo" path="res://src/scenes/King.tscn" id="2_tnjnq"]
+
+[node name="Castle2" type="Node2D"]
+
+[node name="King" parent="." instance=ExtResource("2_tnjnq")]
+z_index = 1
+position = Vector2(-297, 155)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(922, 736)
+texture = ExtResource("2_p0ia1")

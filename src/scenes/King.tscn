@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://c1pcnoyt8ewoo"]
+
+[ext_resource type="Texture2D" uid="uid://dol46jyccb7c8" path="res://src/assets/castles/king.png" id="1_x6e8r"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0x73f"]
+radius = 94.7629
+
+[node name="King" type="Node2D"]
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Area2D"]
+position = Vector2(933.25, 492.474)
+scale = Vector2(0.0938118, 0.0938118)
+texture = ExtResource("1_x6e8r")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(934, 492)
+shape = SubResource("CircleShape2D_0x73f")

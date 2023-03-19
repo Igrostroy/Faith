@@ -7,23 +7,26 @@ var server_peer = ENetMultiplayerPeer.new()
 var _multiplayer = null
 
 
-const SERVER_PORT = 4433
+const DEFAULT_PORT = 4433
 const MAX_PLAYERS = 3
 
+var _server_port = DEFAULT_PORT
 
-func _init(multiplayer):
+
+func _init(multiplayer, server_port):
 	self._multiplayer = multiplayer
+	self._server_port = int(server_port)
 
 
 func start():
 	print("server_peer: ", server_peer)
-	var create_server_result = server_peer.create_server(SERVER_PORT, MAX_PLAYERS)
+	var create_server_result = server_peer.create_server(self._server_port, MAX_PLAYERS)
 	if create_server_result != OK:
 		OS.alert("Failed to start multiplayer server.")
 		return
 	else:
 		self._multiplayer.multiplayer_peer = server_peer
-		print('Started server on port: ', SERVER_PORT)
+		print('Started server on port: ', self._server_port)
 		
 
 	
