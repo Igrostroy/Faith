@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://dxnf6lfim0k4a"]
+
+[ext_resource type="PackedScene" uid="uid://bb6cyxqar28u8" path="res://src/scenes/players/Castle1.tscn" id="1_c2sb8"]
+[ext_resource type="PackedScene" uid="uid://ciridmbcahx5j" path="res://src/scenes/players/Castle2.tscn" id="2_grpsg"]
+[ext_resource type="PackedScene" uid="uid://860yxeryutd" path="res://src/scenes/players/Castle3.tscn" id="3_cmhra"]
+[ext_resource type="Script" path="res://src/scenes/menu/scripts/Camera2D.gd" id="4_tdp7s"]
+
+[node name="root" type="Node2D"]
+
+[node name="Castle1" parent="." instance=ExtResource("1_c2sb8")]
+position = Vector2(-4, 207)
+
+[node name="Castle2" parent="." instance=ExtResource("2_grpsg")]
+position = Vector2(-517, -421)
+
+[node name="Castle3" parent="." instance=ExtResource("3_cmhra")]
+position = Vector2(626, -405)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(964, 534)
+script = ExtResource("4_tdp7s")
