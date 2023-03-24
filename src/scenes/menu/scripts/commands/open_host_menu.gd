@@ -12,26 +12,25 @@ Usage:
 	open_battle_menu_command.execute()
 """
 
+const HOST_LOBBY_MENU_SCENE = "res://src/scenes/menu/HostLobbyMenu.tscn"
+const MAIN_MENU_SCENE = "res://src/scenes/menu/main.tscn"
 
-var _main_menu_node: Node2D = null
-var _host_menu_node: Node2D = null
+var _current_scene_tree: SceneTree = null
+var _scene_loader: SceneLoader = null
 
 
-func _init(main_menu_node: Node2D, host_menu_node: Node2D):
-	self._main_menu_node = main_menu_node
-	self._host_menu_node = host_menu_node
+func _init(current_scene_tree: SceneTree):
+	self._current_scene_tree = current_scene_tree
+	self._scene_loader = SceneLoader.new(self._current_scene_tree)
 
 
 func execute():
-	# Open host menu
-	self._main_menu_node.visible = false
-	self._host_menu_node.visible = true
+	self._scene_loader.load_scene(HOST_LOBBY_MENU_SCENE)
+
 	
 	
 	
 
 
 func undo():
-	# Go back to main menu
-	self._main_menu_node.visible = true
-	self._host_menu_node.visible = false
+	self._scene_loader.load_scene(MAIN_MENU_SCENE)
