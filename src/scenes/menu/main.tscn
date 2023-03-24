@@ -1,25 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://b1wskcnwrxs25"]
+[gd_scene load_steps=3 format=3 uid="uid://b1wskcnwrxs25"]
 
 [ext_resource type="Script" path="res://src/scenes/menu/scripts/main.gd" id="1_hc677"]
-[ext_resource type="Script" path="res://src/scenes/menu/scripts/HostMenu.gd" id="2_f2qv4"]
 [ext_resource type="Script" path="res://src/scenes/menu/scripts/ConnectMenu.gd" id="3_cpjdu"]
-
-[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_se2so"]
-properties/0/path = NodePath("ItemList:item_0/text")
-properties/0/spawn = true
-properties/0/sync = true
-properties/1/path = NodePath("ItemList:item_0/disabled")
-properties/1/spawn = true
-properties/1/sync = true
-properties/2/path = NodePath("ItemList:item_count")
-properties/2/spawn = true
-properties/2/sync = true
-properties/3/path = NodePath("ItemList:item_1/text")
-properties/3/spawn = true
-properties/3/sync = true
-properties/4/path = NodePath("ItemList:item_2/text")
-properties/4/spawn = true
-properties/4/sync = true
 
 [node name="root" type="Control"]
 layout_mode = 3
@@ -66,69 +48,20 @@ alignment = 1
 
 [node name="HostButton" type="Button" parent="Level/MainMenu/VBoxContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 26
 text = "HOST"
 
 [node name="ConnectButton" type="Button" parent="Level/MainMenu/VBoxContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 26
 text = "CONNECT"
 
 [node name="ExitButton" type="Button" parent="Level/MainMenu/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+theme_override_font_sizes/font_size = 26
 text = "EXIT"
-
-[node name="HostMenu" type="Node2D" parent="Level"]
-script = ExtResource("2_f2qv4")
-
-[node name="StartHostingButton" type="Button" parent="Level/HostMenu"]
-offset_left = -5.0
-offset_top = 286.0
-offset_right = 51.0
-offset_bottom = 317.0
-text = "START HOSTING"
-
-[node name="StartGame" type="Button" parent="Level/HostMenu"]
-offset_left = -224.0
-offset_top = 287.0
-offset_right = -92.0
-offset_bottom = 318.0
-text = "START GAME"
-
-[node name="ItemList" type="ItemList" parent="Level/HostMenu"]
-offset_left = 310.0
-offset_top = -259.0
-offset_right = 536.0
-offset_bottom = 313.0
-item_count = 3
-item_0/text = ""
-item_1/text = ""
-item_2/text = ""
-
-[node name="BackToMainMenuFromHostButton" type="Button" parent="Level/HostMenu"]
-offset_left = -502.0
-offset_top = 288.0
-offset_right = -446.0
-offset_bottom = 319.0
-text = "Back"
-
-[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="Level/HostMenu"]
-replication_config = SubResource("SceneReplicationConfig_se2so")
-
-[node name="PortEdit" type="TextEdit" parent="Level/HostMenu"]
-offset_left = -217.0
-offset_top = 204.0
-offset_right = -32.0
-offset_bottom = 250.0
-text = "4433"
-placeholder_text = "PORT"
-
-[node name="PortLabel" type="Label" parent="Level/HostMenu"]
-offset_left = -261.0
-offset_top = 213.0
-offset_right = -221.0
-offset_bottom = 239.0
-text = "Port:"
 
 [node name="ConnectMenu" type="Node2D" parent="Level"]
 visible = false
@@ -184,16 +117,12 @@ offset_right = 120.0
 offset_bottom = -83.0
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
-_spawnable_scenes = PackedStringArray("res://src/scenes/level/BattleLevel.tscn")
+_spawnable_scenes = PackedStringArray("res://src/scenes/level/BattleLevel.tscn", "res://src/scenes/menu/HostLobbyMenu.tscn")
 spawn_path = NodePath("../Level")
 spawn_limit = 1
 
 [connection signal="pressed" from="Level/MainMenu/VBoxContainer/HostButton" to="." method="_on_host_button_pressed"]
 [connection signal="pressed" from="Level/MainMenu/VBoxContainer/ConnectButton" to="." method="_on_connect_button_pressed"]
 [connection signal="pressed" from="Level/MainMenu/VBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]
-[connection signal="visibility_changed" from="Level/HostMenu" to="Level/HostMenu" method="_on_visibility_changed"]
-[connection signal="pressed" from="Level/HostMenu/StartHostingButton" to="Level/HostMenu" method="_on_start_hosting_button_pressed"]
-[connection signal="pressed" from="Level/HostMenu/StartGame" to="." method="_on_start_game_pressed"]
-[connection signal="pressed" from="Level/HostMenu/BackToMainMenuFromHostButton" to="." method="_on_back_to_main_menu_button_pressed"]
 [connection signal="pressed" from="Level/ConnectMenu/BackToMainMenuFromConnectButton" to="." method="_on_back_to_main_menu_from_connect_button_pressed"]
 [connection signal="pressed" from="Level/ConnectMenu/ConnectGameButton" to="Level/ConnectMenu" method="_on_connect_game_button_pressed"]

@@ -5,7 +5,7 @@ class_name GameRoot
 # Globals
 @onready var main_menu_node = $Level/MainMenu
 const CONNECTED_TO_SERVER_SIGNAL = "connected_to_server"
-
+@onready var current_scene_tree = get_tree()
 
 
 # ==== ExitCommand ====
@@ -13,9 +13,8 @@ const CONNECTED_TO_SERVER_SIGNAL = "connected_to_server"
 @onready var exit_command: Command = ExitCommand.new(scene_tree)
 
 # ==== OpenHostMenuCommand ==== 
-@onready var host_menu_node = $Level/HostMenu
 @onready var open_host_menu = OpenHostMenuCommand.new(
-	main_menu_node, host_menu_node,
+	current_scene_tree,
 )
 
 
@@ -36,12 +35,13 @@ func _ready():
 
 func change_level(scene: PackedScene):
 	# Remove old level if any.
-	var level = $Level
-	for child in level.get_children():
-		level.remove_child(child)
-		child.queue_free()
+	#var level = $Level
+	#for child in level.get_children():
+	#	level.remove_child(child)
+	#	child.queue_free()
 	# Add new level.
-	level.add_child(scene.instantiate())
+	#level.add_child(scene.instantiate())
+	get_tree().change_scene(scene)
 
 
 
@@ -59,11 +59,6 @@ func _on_back_to_main_menu_button_pressed():
 
 func _on_connect_button_pressed():
 	open_connect_menu.execute()
-
-
-func _on_back_to_main_menu_from_host_button_pressed():
-	# Enable main menu node and disable host menu node
-	open_host_menu.undo()
 
 
 func _on_host_button_pressed():

@@ -1,49 +1,264 @@
-[gd_scene format=3 uid="uid://bio7tfyrnn4r6"]
+[gd_scene load_steps=6 format=3 uid="uid://ds2ci23nhd831"]
+
+[ext_resource type="Script" path="res://src/scenes/menu/scripts/HostLobbyMenu.gd" id="1_ba3ws"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mnjju"]
+bg_color = Color(0.19571, 0.199259, 0.314558, 1)
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_yirkk"]
+properties/0/path = NodePath("Log/RichTextLabel:text")
+properties/0/spawn = true
+properties/0/sync = true
+properties/1/path = NodePath("Player1Slot/PlayerInfo:visible")
+properties/1/spawn = true
+properties/1/sync = true
+properties/2/path = NodePath("Player2Slot/PlayerInfo:visible")
+properties/2/spawn = true
+properties/2/sync = true
+properties/3/path = NodePath("Player3Slot/PlayerInfo:visible")
+properties/3/spawn = true
+properties/3/sync = true
+properties/4/path = NodePath("../Log/RichTextLabel:text")
+properties/4/spawn = true
+properties/4/sync = true
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3wwie"]
+bg_color = Color(0.0823529, 0.12549, 0.164706, 1)
+border_width_left = 5
+border_color = Color(0.545098, 0.243137, 0.686275, 1)
+
+[sub_resource type="Theme" id="Theme_2i2ui"]
 
 [node name="HostLobbyMenu" type="Node2D"]
-position = Vector2(557, 303)
+position = Vector2(1160, 495)
+script = ExtResource("1_ba3ws")
 
-[node name="StartGameButton" type="Button" parent="."]
-offset_left = -5.0
-offset_top = 286.0
-offset_right = 51.0
-offset_bottom = 317.0
-text = "START"
-metadata/_edit_use_anchors_ = true
+[node name="PlayersList" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(300, 800)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 386.0
+offset_top = -437.0
+offset_right = 686.0
+offset_bottom = 363.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 8
+size_flags_vertical = 3
+theme_override_constants/separation = 30
 
-[node name="ItemList" type="ItemList" parent="."]
-offset_left = 310.0
-offset_top = -259.0
-offset_right = 563.0
-offset_bottom = 313.0
-metadata/_edit_use_anchors_ = true
+[node name="Player1Slot" type="Panel" parent="PlayersList"]
+custom_minimum_size = Vector2(300, 100)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_mnjju")
 
-[node name="BackToMainMenuFromHostButton" type="Button" parent="."]
-offset_left = -502.0
-offset_top = 288.0
-offset_right = -446.0
-offset_bottom = 319.0
+[node name="PlayerInfo" type="HBoxContainer" parent="PlayersList/Player1Slot"]
+visible = false
+custom_minimum_size = Vector2(100, 10)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -90.0
+offset_top = -20.0
+offset_right = 90.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="PlayerNameLabel" type="Label" parent="PlayersList/Player1Slot/PlayerInfo"]
+custom_minimum_size = Vector2(100, 10)
+layout_mode = 2
+theme_override_font_sizes/font_size = 26
+text = "Player1"
+horizontal_alignment = 1
+
+[node name="ColorRect" type="ColorRect" parent="PlayersList/Player1Slot/PlayerInfo"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+color = Color(0.25098, 0.509804, 0.807843, 1)
+
+[node name="Player2Slot" type="Panel" parent="PlayersList"]
+custom_minimum_size = Vector2(300, 100)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_mnjju")
+
+[node name="PlayerInfo" type="HBoxContainer" parent="PlayersList/Player2Slot"]
+visible = false
+custom_minimum_size = Vector2(100, 10)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -90.0
+offset_top = -20.0
+offset_right = 90.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="PlayerNameLabel" type="Label" parent="PlayersList/Player2Slot/PlayerInfo"]
+custom_minimum_size = Vector2(100, 10)
+layout_mode = 2
+theme_override_font_sizes/font_size = 26
+text = "Player2"
+horizontal_alignment = 1
+
+[node name="ColorRect" type="ColorRect" parent="PlayersList/Player2Slot/PlayerInfo"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+color = Color(0.254902, 0.572549, 0.439216, 1)
+
+[node name="Player3Slot" type="Panel" parent="PlayersList"]
+custom_minimum_size = Vector2(300, 100)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_mnjju")
+
+[node name="PlayerInfo" type="HBoxContainer" parent="PlayersList/Player3Slot"]
+visible = false
+custom_minimum_size = Vector2(100, 10)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -90.0
+offset_top = -20.0
+offset_right = 90.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="PlayerNameLabel" type="Label" parent="PlayersList/Player3Slot/PlayerInfo"]
+custom_minimum_size = Vector2(100, 10)
+layout_mode = 2
+theme_override_font_sizes/font_size = 26
+text = "Player2"
+horizontal_alignment = 1
+
+[node name="ColorRect" type="ColorRect" parent="PlayersList/Player3Slot/PlayerInfo"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+color = Color(0.776471, 0.333333, 0.443137, 1)
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="PlayersList"]
+replication_config = SubResource("SceneReplicationConfig_yirkk")
+
+[node name="Background" type="ColorRect" parent="."]
+z_index = -3
+clip_contents = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -2664.0
+offset_top = -2254.0
+offset_right = 2723.0
+offset_bottom = 2372.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0784314, 0.0941176, 0.14902, 1)
+
+[node name="HostOptions" type="Panel" parent="."]
+custom_minimum_size = Vector2(300, 100)
+offset_left = -1112.0
+offset_top = -459.0
+offset_right = -772.0
+offset_bottom = -65.0
+size_flags_horizontal = 8
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_mnjju")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HostOptions"]
+layout_mode = 0
+offset_right = 339.0
+offset_bottom = 395.0
+theme_override_constants/separation = 100
+alignment = 1
+
+[node name="UpperPart" type="VBoxContainer" parent="HostOptions/VBoxContainer"]
+custom_minimum_size = Vector2(100, 50)
+layout_mode = 2
+
+[node name="PortLabel" type="Label" parent="HostOptions/VBoxContainer/UpperPart"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 26
+text = "Port:"
+
+[node name="PortEdit" type="LineEdit" parent="HostOptions/VBoxContainer/UpperPart"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 26
+text = "4433"
+placeholder_text = "PORT"
+
+[node name="StartHostingButton" type="Button" parent="HostOptions/VBoxContainer/UpperPart"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 26
+text = "START HOSTING"
+
+[node name="StartGame" type="Button" parent="HostOptions/VBoxContainer/UpperPart"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 26
+disabled = true
+text = "START GAME"
+
+[node name="BottomPart" type="VBoxContainer" parent="HostOptions/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="BackToMainMenuFromHostButton2" type="Button" parent="HostOptions/VBoxContainer/BottomPart"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 26
 text = "Back"
 metadata/_edit_use_anchors_ = true
 
-[node name="Player1Name" type="TextEdit" parent="."]
-offset_left = 361.0
-offset_top = -237.0
-offset_right = 494.0
-offset_bottom = -200.0
-text = "Player"
-metadata/_edit_use_anchors_ = true
+[node name="Log" type="Panel" parent="."]
+custom_minimum_size = Vector2(300, 100)
+offset_left = -689.0
+offset_top = 235.0
+offset_right = 293.0
+offset_bottom = 477.0
+size_flags_horizontal = 8
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_3wwie")
 
-[node name="Player2Name" type="TextEdit" parent="."]
-offset_left = 362.0
-offset_top = -183.0
-offset_right = 495.0
-offset_bottom = -146.0
-metadata/_edit_use_anchors_ = true
+[node name="RichTextLabel" type="RichTextLabel" parent="Log"]
+layout_mode = 2
+offset_left = 8.0
+offset_top = 3.0
+offset_right = 985.0
+offset_bottom = 241.0
+theme = SubResource("Theme_2i2ui")
 
-[node name="Player3Name" type="TextEdit" parent="."]
-offset_left = 362.0
-offset_top = -123.0
-offset_right = 495.0
-offset_bottom = -86.0
-metadata/_edit_use_anchors_ = true
+[node name="Label" type="Label" parent="Log"]
+layout_mode = 2
+offset_left = 448.0
+offset_top = -75.0
+offset_right = 540.0
+offset_bottom = -14.0
+theme_override_font_sizes/font_size = 42
+text = "Logs"
+
+[connection signal="pressed" from="HostOptions/VBoxContainer/UpperPart/StartHostingButton" to="." method="_on_start_hosting_button_pressed"]
+[connection signal="pressed" from="HostOptions/VBoxContainer/BottomPart/BackToMainMenuFromHostButton2" to="." method="_on_back_to_main_menu_from_host_button_2_pressed"]
